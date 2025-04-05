@@ -1,21 +1,45 @@
-<?php include '../config/config.php'; ?>
+<?php
+session_start();
+require_once '../config/connection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = trim($_POST['name']);  // ✅ Correct variable
+    $email = trim($_POST['email']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $role = $_POST['role']; // 'seeker' or 'provider'
+
+    // ✅ Insert into Database without Resume
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $email, $password, $role);  // ✅ Using $name
+
+    if ($stmt->execute()) {
+        $_SESSION['user_id'] = $stmt->insert_id;
+        $_SESSION['role'] = $role;
+        header("Location: dashboard.php?success=registered");
+        exit();
+    } else {
+        echo "Error: " . $conn->error;
+    }
+    $stmt->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - <?php echo SITE_NAME; ?></title>
     <link rel="stylesheet" href="../assets/css/sign.css">
+    <title>Register</title>
 </head>
 <body>
-    <form action="../process-registration.php" method="POST">
+    <form action="register.php" method="POST">
         <h2>Register</h2>
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="text" name="name" required placeholder="Full Name">
+        <input type="email" name="email" required placeholder="Email">
+        <input type="password" name="password" required placeholder="Password">
         <select name="role">
-            <option value="job_seeker">Job Seeker</option>
-            <option value="job_provider">Job Provider</option>
+            <option value="seeker">Job Seeker</option>
+            <option value="provider">Job Provider</option>
         </select>
         <button type="submit">Register</button>
     </form>
