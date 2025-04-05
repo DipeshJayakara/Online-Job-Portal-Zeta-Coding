@@ -1,0 +1,148 @@
+/* 🌟 General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #e3f2fd; /* Light Blue Background */
+    color: #0d47a1; /* Dark Blue Text */
+    margin: 0;
+    padding: 0;
+}
+
+/* 📌 Main Container */
+.account-container {
+    display: flex;
+    max-width: 1000px;
+    margin: 50px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(13, 71, 161, 0.2);
+    overflow: hidden;
+}
+
+/* 📌 Left Panel (User Info) */
+.left-panel {
+    width: 35%;
+    background: #0d47a1; /* Dark Blue */
+    padding: 30px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.left-panel h2 {
+    color: #bbdefb; /* Light Blue */
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.user-info p {
+    font-size: 14px;
+    margin: 8px 0;
+    color: #bbdefb; /* Light Blue */
+}
+
+/* 📌 Resume & Certificate Links */
+.file-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #bbdefb;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.file-link:hover {
+    text-decoration: underline;
+}
+
+/* 📌 Right Panel (Form Section) */
+.right-panel {
+    width: 65%;
+    padding: 30px;
+}
+
+/* 📌 Form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #0d47a1; /* Dark Blue */
+}
+
+/* 📌 Inputs & Textarea */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #e3f2fd; /* Light Blue */
+    border: 1px solid #90caf9; /* Lighter Blue */
+    border-radius: 6px;
+    font-size: 14px;
+    color: #0d47a1;
+    transition: 0.3s;
+}
+
+textarea {
+    height: 80px;
+}
+
+/* 📌 Input Focus Effect */
+input:focus,
+textarea:focus {
+    border-color: #1976d2;
+    outline: none;
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.4);
+}
+
+/* 📌 Submit Button */
+button {
+    background-color: #1976d2; /* Medium Blue */
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #1565c0; /* Slightly Darker Blue */
+}
+
+/* 📌 Back to Dashboard */
+.back-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1976d2;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+/* 📌 Responsive Design */
+@media screen and (max-width: 768px) {
+    .account-container {
+        flex-direction: column;
+    }
+    .left-panel {
+        width: 100%;
+    }
+    .right-panel {
+        width: 100%;
+    }
+}

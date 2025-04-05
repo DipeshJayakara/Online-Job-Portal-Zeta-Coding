@@ -1,0 +1,112 @@
+/* Footer Styling - Matches Header Theme */
+footer {
+    background: #0f172a; /* Same as header */
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Footer Container */
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 20px;
+}
+
+/* Footer Sections */
+.footer-section {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Section Titles */
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #15fae7; /* Same highlight color as header */
+    margin-bottom: 10px;
+}
+
+/* Footer Links */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    color: #cbd5e1; /* Soft gray like header */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #10ec91; /* Highlight color on hover */
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-icons a img {
+    width: 30px; /* Consistent icon size */
+    height: 30px;
+    filter: brightness(0) invert(1); /* White icons */
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover img {
+    transform: scale(1.1);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    background: #0b1120; /* Slightly darker strip */
+    padding: 8px 0;
+    font-size: 14px;
+    color: #cbd5e1;
+}
+
+/* 🔹 RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* Stack sections */
+        text-align: center;
+    }
+
+    .footer-section {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .social-icons {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-section h3 {
+        font-size: 16px;
+    }
+
+    .footer-section ul li a {
+        font-size: 14px;
+    }
+
+    .social-icons a img {
+        width: 25px;
+        height: 25px;
+    }
+}

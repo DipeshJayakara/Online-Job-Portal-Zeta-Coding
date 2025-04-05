@@ -1,0 +1,116 @@
+
+
+/* Ensure header & footer are unaffected */
+header, footer {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    color: #fff;
+}
+
+
+/* Container for job details */
+.job-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+/* Job Box */
+.job-box {
+    background: rgba(19, 255, 255, 0.062);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    border: 1px solid #444;
+}
+
+/* Job Title */
+h2 {
+    color: #2f00ff;
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Job Details */
+.job-details {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.job-details p {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    border-left: 5px solid #041185b0;
+}
+
+/* Apply Button */
+button {
+    background: #04831f;
+    color: #f1f1f7;
+    border: none;
+    padding: 14px 22px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    width: 100%;
+    max-width: 280px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: #e6b800;
+    transform: scale(1.05);
+}
+
+/* Back to Listings Link */
+.back-link {
+    display: block;
+    margin-top: 15px;
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+    color: #ffd633;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .job-box {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .job-details p {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
