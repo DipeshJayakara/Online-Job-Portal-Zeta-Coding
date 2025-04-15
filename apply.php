@@ -72,13 +72,10 @@ if (!$resumeData || empty($resumeData['resume'])) {
 
 $resumeText = $resumeData['resume']; // Resume is stored as text
 
-// ✅ Calculate ATS Score based on text resume
-require_once 'ats-checker.php';
-$atsScore = calculate_ats_score($resumeText);
 
 // ✅ Insert application with ATS score
-$stmt = $conn->prepare("INSERT INTO applications (job_id, applicant_id, ats_score, status) VALUES (?, ?, ?, 'Pending')");
-$stmt->bind_param("iid", $job_id, $applicant_id, $atsScore);
+$stmt = $conn->prepare("INSERT INTO applications (job_id, applicant_id, status) VALUES (?, ?, 'Pending')");
+$stmt->bind_param("id", $job_id, $applicant_id);
 
 if ($stmt->execute()) {
     header("Location: views/job-details.php?job_id=$job_id&success=applied");
@@ -89,4 +86,7 @@ if ($stmt->execute()) {
 }
 
 $stmt->close();
+
+require_once 'send-application-email.php';
 ?>
+
