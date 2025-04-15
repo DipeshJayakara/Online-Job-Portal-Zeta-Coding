@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../assets/css/sign.css">
+    <link rel="stylesheet" href="../assets/css/sign.css?v=<?= time(); ?>">
 </head>
 <body>
     <form action="" method="POST">

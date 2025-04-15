@@ -26,11 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/sign.css?v=<?= time(); ?>">
     <title>Forgot Password</title>
 </head>
 <body>
-    <h2>Forgot Password</h2>
     <form method="POST">
+    <h2>Forgot Password</h2>
         <label>Email:</label>
         <input type="email" name="email" required>
         <button type="submit">Proceed</button>

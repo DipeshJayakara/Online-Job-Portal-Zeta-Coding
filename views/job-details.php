@@ -38,7 +38,7 @@ if (!$job) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Details</title>
-    <link rel="stylesheet" href="../assets/css/job-details.css">
+    <link rel="stylesheet" href="../assets/css/job-details.css?v=2">
 </head>
 <body>
     <?php include '../includes/header.php'; ?>

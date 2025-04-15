@@ -13,13 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $company_name = trim($_POST['company_name']);
     $title = trim($_POST['title']);
     $description = trim($_POST['description']);
+    $job_type = trim($_POST['job-type']); // This matches your form's name attribute
     $salary = trim($_POST['salary']);
     $location = trim($_POST['location']);
     $provider_id = $_SESSION['user_id'];
 
     // ✅ Use Prepared Statements to prevent SQL Injection
-    $stmt = $conn->prepare("INSERT INTO jobs (company_name, title, description, salary, location, provider_id) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssi", $company_name, $title, $description, $salary, $location, $provider_id);
+    // Use backticks to escape the `job-type` column
+    $stmt = $conn->prepare("INSERT INTO jobs (company_name, title, description, salary, location, `job_type`, provider_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssi", $company_name, $title, $description, $salary, $location, $job_type, $provider_id);
 
     if ($stmt->execute()) {
         header('Location: dashboard.php?success=job_posted');
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post a Job</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/post-job.css">
 </head>
 <body>
     <h2>Post a New Job</h2>
@@ -55,6 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label>Description:</label>
         <textarea name="description" required></textarea>
+
+        <label>Job Type:</label>
+        <input type="text" name="job-type" required> <!-- Corrected to use job-type -->
 
         <label>Salary:</label>
         <input type="text" name="salary" required>

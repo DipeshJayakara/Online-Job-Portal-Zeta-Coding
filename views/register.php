@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../assets/css/sign.css">
+    <link rel="stylesheet" href="../assets/css/sign.css?v=<?= time(); ?>">
     <title>Register</title>
 </head>
 <body>

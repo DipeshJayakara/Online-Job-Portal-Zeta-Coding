@@ -2,7 +2,7 @@
 session_start();
 require_once __DIR__ . '/../config/connection.php'; // Database connection
 
-// ✅ Redirect if user is not authenticated
+// Redirect if the user is not authenticated
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
     header('Location: login.php');
     exit();
@@ -10,97 +10,119 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
 
 $user_id = $_SESSION['user_id'];
 $user_role = $_SESSION['role'];
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/dashboard.css"> <!-- Ensure path is correct -->
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/dashboard.css?v=<?= time(); ?>">
 </head>
 <body>
 
     <?php include '../includes/header.php'; ?>
 
-    <div class="dashboard-container">
-        <h2>Welcome to Your Dashboard</h2>
+    <div class="theme-toggle">
+        <label class="switch">
+            <input type="checkbox" id="themeSwitch">
+            <span class="slider round"></span>
+        </label>
+        <span class="toggle-label">Dark Mode</span>
+    </div>
 
-        <!-- ✅ Dashboard for Job Seekers -->
-        <?php if ($user_role === 'seeker') { ?>
-            <h3>Available Actions:</h3>
-            <a href="job-listings.php">Browse Jobs</a>
-            
-            <h3>My Applications</h3>
-            <?php
-            $stmt = $conn->prepare("
-                SELECT jobs.id, jobs.title 
-                FROM applications 
-                JOIN jobs ON applications.job_id = jobs.id 
-                WHERE applications.applicant_id = ?
-            ");
-            $stmt->bind_param("i", $user_id);
-            
-            if ($stmt->execute()) {
-                $result = $stmt->get_result();
-                
-                if ($result->num_rows > 0) {
-                    echo "<ul>";
-                    while ($job = $result->fetch_assoc()) {
-                        echo "<li><a href='job-details.php?job_id=" . $job['id'] . "'>" . htmlspecialchars($job['title']) . "</a></li>";
+
+    <div class="user-dashboard-wrapper">
+        <h2 class="dashboard-title">Welcome to Your Dashboard</h2>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-sections">
+
+            <?php if ($user_role === 'seeker') { ?>
+                <section class="dashboard-card seeker-section">
+                    <h3>Actions for Job Seekers</h3>
+                    <a class="dashboard-link" href="job-listings.php">Browse Available Jobs</a>
+
+                    <h4>Your Applications</h4>
+                    <div class="application-list">
+                    <?php
+                    $stmt = $conn->prepare("SELECT jobs.id, jobs.title FROM applications JOIN jobs ON applications.job_id = jobs.id WHERE applications.applicant_id = ?");
+                    $stmt->bind_param("i", $user_id);
+
+                    if ($stmt->execute()) {
+                        $result = $stmt->get_result();
+                        if ($result->num_rows > 0) {
+                            echo "<ul>";
+                            while ($job = $result->fetch_assoc()) {
+                                echo "<li><a href='job-details.php?job_id=" . $job['id'] . "'>" . htmlspecialchars($job['title']) . "</a></li>";
+                            }
+                            echo "</ul>";
+                        } else {
+                            echo "<p>No applications yet.</p>";
+                        }
+                    } else {
+                        echo "<p>Error: " . $stmt->error . "</p>";
                     }
-                    echo "</ul>";
-                } else {
-                    echo "<p>No applications yet.</p>";
-                }
-            } else {
-                echo "<p>Error fetching applications: " . $stmt->error . "</p>";
-            }
-            $stmt->close();
-            ?>
-        <?php } ?>
+                    $stmt->close();
+                    ?>
+                    </div>
+                </section>
+            <?php } ?>
 
-        <!-- ✅ Dashboard for Job Providers -->
-        <?php if ($user_role === 'provider') { ?>
-            <h3>Available Actions:</h3>
-            <a href="post-job.php">Post a Job</a>
-            <a href="applications.php">Manage Applications</a>
+            <?php if ($user_role === 'provider') { ?>
+                <section class="dashboard-card provider-section">
+                    <h3>Actions for Job Providers</h3>
+                    <a class="dashboard-link" href="post-job.php">Post a New Job</a>
+                    <a class="dashboard-link" href="applications.php">View Applications</a>
 
-            <h3>Your Posted Jobs</h3>
-            <?php
-            $stmt = $conn->prepare("SELECT id, title FROM jobs WHERE provider_id = ?");
-            $stmt->bind_param("i", $user_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            
-            if ($result->num_rows > 0) {
-                echo "<ul>";
-                while ($job = $result->fetch_assoc()) {
-                    echo "<li><a href='job-details.php?job_id=" . $job['id'] . "'>" . htmlspecialchars($job['title']) . "</a></li>";
-                }
-                echo "</ul>";
-            } else {
-                echo "<p>No jobs posted yet.</p>";
-            }
-            $stmt->close();
-            ?>
-        <?php } ?>
+                    <h4>Your Job Listings</h4>
+                    <div class="job-list">
+                    <?php
+                    $stmt = $conn->prepare("SELECT id, title FROM jobs WHERE provider_id = ?");
+                    $stmt->bind_param("i", $user_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
 
-        <!-- ✅ Dashboard for Admin -->
-        <?php if ($user_role === 'admin') { ?>
-            <h3>Admin Panel</h3>
-            <a href="../admin/admin-dashboard.php">Admin Dashboard</a>
-            <a href="../admin/manage-users.php">Manage Users</a>
-            <a href="../admin/manage-jobs.php">Manage Jobs</a>
-        <?php } ?>
+                    if ($result->num_rows > 0) {
+                        echo "<ul>";
+                        while ($job = $result->fetch_assoc()) {
+                            echo "<li><a href='job-details.php?job_id=" . $job['id'] . "'>" . htmlspecialchars($job['title']) . "</a></li>";
+                        }
+                        echo "</ul>";
+                    } else {
+                        echo "<p>You haven't posted any jobs yet.</p>";
+                    }
+                    $stmt->close();
+                    ?>
+                    </div>
+                </section>
+            <?php } ?>
 
-        <h3>Profile & Logout</h3>
-        <a href="profile.php">Edit Profile</a>
-        <a href="../logout.php">Logout</a>
+            <?php if ($user_role === 'admin') { ?>
+                <section class="dashboard-card admin-section">
+                    <h3>Administrator Tools</h3>
+                    <a class="dashboard-link" href="../admin/admin-dashboard.php">Admin Dashboard</a>
+                    <a class="dashboard-link" href="../admin/manage-users.php">Manage Users</a>
+                    <a class="dashboard-link" href="../admin/manage-jobs.php">Manage Jobs</a>
+                </section>
+            <?php } ?>
+
+            <section class="dashboard-card profile-section">
+                <h3>Account Settings</h3>
+                <a class="dashboard-link" href="profile.php">Edit Profile</a>
+                <a class="dashboard-link logout-btn" href="../logout.php">Logout</a>
+            </section>
+        </div>
     </div>
 
     <?php include '../includes/footer.php'; ?>
-
 </body>
 </html>
+
+<script>
+    const toggle = document.getElementById('themeSwitch');
+    toggle.addEventListener('change', () => {
+        document.body.classList.toggle('dark-mode');
+    });
+</script>
