@@ -52,22 +52,50 @@ footer {
     color: #10ec91; /* Highlight color on hover */
 }
 
-/* Social Media Icons */
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
+    margin-top: 10px;
 }
 
-.social-icons a img {
-    width: 30px; /* Consistent icon size */
-    height: 30px;
-    filter: brightness(0) invert(1); /* White icons */
-    transition: transform 0.3s ease;
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    background-color: #444; /* fallback */
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.social-icons a:hover img {
+/* Brand-specific background colors */
+.social-icons a.fa-facebook {
+    background-color: #3b5998;
+}
+
+.social-icons a.fa-twitter {
+    background-color: #1da1f2;
+}
+
+.social-icons a.fa-linkedin {
+    background-color: #0077b5;
+}
+
+/* Hover effect */
+.social-icons a:hover {
     transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Footer Bottom */
@@ -89,11 +117,6 @@ footer {
         width: 100%;
         margin-bottom: 15px;
     }
-
-    .social-icons {
-        flex-wrap: wrap;
-        gap: 15px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -103,10 +126,5 @@ footer {
 
     .footer-section ul li a {
         font-size: 14px;
-    }
-
-    .social-icons a img {
-        width: 25px;
-        height: 25px;
     }
 }

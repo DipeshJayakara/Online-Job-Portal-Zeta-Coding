@@ -1,116 +1,138 @@
+/* File: ../assets/css/job-details.css */
 
-
-/* Ensure header & footer are unaffected */
-header, footer {
-    width: 100%;
-    padding: 15px 20px;
-    background: rgba(0, 0, 0, 0.8);
-    text-align: center;
-    color: #fff;
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #f2f2f2;
+    color: #222;
 }
 
-
-/* Container for job details */
 .job-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 80vh;
-    padding: 20px;
+    padding: 3rem 1rem;
+    animation: fadeIn 0.8s ease;
 }
 
-/* Job Box */
 .job-box {
-    background: rgba(19, 255, 255, 0.062);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
-    width: 90%;
-    max-width: 600px;
-    text-align: center;
-    border: 1px solid #444;
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 16px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 6px solid #2c3e50;
 }
 
-/* Job Title */
-h2 {
-    color: #2f00ff;
-    font-size: 26px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+.job-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
 }
 
-/* Job Details */
-.job-details {
-    text-align: left;
-    margin-bottom: 20px;
+.job-box h2 {
+    margin-top: 0;
+    font-size: 2.2rem;
+    color: #2c3e50;
+    animation: slideInDown 0.5s ease-in-out;
 }
 
 .job-details p {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 14px;
-    border-radius: 8px;
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 12px;
-    border-left: 5px solid #041185b0;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    animation: fadeInUp 0.6s ease-in-out;
 }
 
-/* Apply Button */
+.job-details p strong {
+    color: #444;
+}
+
+form {
+    margin-top: 2.5rem;
+    animation: fadeIn 1s ease-in-out;
+}
+
 button {
-    background: #04831f;
-    color: #f1f1f7;
+    background: #2c3e50;
+    color: #fff;
+    padding: 0.9rem 2.2rem;
     border: none;
-    padding: 14px 22px;
-    font-size: 16px;
-    cursor: pointer;
     border-radius: 8px;
-    transition: 0.3s;
-    width: 100%;
-    max-width: 280px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background: #e6b800;
-    transform: scale(1.05);
+    background: #1a252f;
+    transform: scale(1.03);
 }
 
-/* Back to Listings Link */
 .back-link {
-    display: block;
-    margin-top: 15px;
-    color: #ffcc00;
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: #2c3e50;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    transition: 0.3s;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .back-link:hover {
-    text-decoration: underline;
-    color: #ffd633;
+    color: #1a252f;
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .job-box {
-        width: 95%;
-        padding: 20px;
+        padding: 1.8rem;
     }
 
-    h2 {
-        font-size: 22px;
+    .job-box h2 {
+        font-size: 1.7rem;
     }
 
     .job-details p {
-        font-size: 14px;
+        font-size: 1rem;
     }
 
     button {
-        font-size: 14px;
-        padding: 12px;
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.05rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

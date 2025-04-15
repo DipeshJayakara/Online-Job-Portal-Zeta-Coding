@@ -1,72 +1,176 @@
-/* General Styles */
+/* Root Variables for Themes */
+:root {
+    --bg-color: #f8fafc;
+    --text-color: #1e293b;
+    --card-bg: #ffffff;
+    --link-color: #0284c7;
+    --highlight: #0ea5e9;
+    --hover-bg: #f1f5f9;
+}
+
+body.dark-mode {
+    --bg-color: #0f172a;
+    --text-color: #f1f5f9;
+    --card-bg: #1e293b;
+    --link-color: #38bdf8;
+    --highlight: #15fae7;
+    --hover-bg: #1e293b;
+}
+
+/* Body Styling */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f0f8ff;
-    color: #333;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
 }
 
+/* Theme Toggle */
+.theme-toggle {
+    text-align: right;
+    margin: 20px 40px 0 0;
+}
+
+.toggle-label {
+    font-size: 14px;
+    margin-left: 10px;
+    color: var(--text-color);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    border-radius: 26px;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px; width: 20px;
+    left: 4px; bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #0ea5e9;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+.user-dashboard-wrapper{
+    padding-left: 30px;
+    padding-bottom: 30px;
+}
+
+/* Dashboard Container */
 .dashboard-container {
-    max-width: 900px;
-    margin: 50px auto;
+    max-width: 1000px;
+    margin: 40px auto;
     padding: 20px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Title */
+.dashboard-container h2 {
     text-align: center;
-    animation: fadeIn 1s ease-in-out;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: var(--highlight);
 }
 
-.dashboard-container h2, .dashboard-container h3 {
-    color: #007bff;
+/* Section Styling */
+.dashboard-section {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Horizontal Box Layout */
-.actions-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+.dashboard-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: var(--highlight);
 }
 
-.action-box {
-    background: #e3f2fd;
-    padding: 15px 20px;
-    border-radius: 5px;
-    text-align: center;
-    transition: background 0.3s ease, transform 0.3s ease;
-    min-width: 150px;
-    font-weight: bold;
-}
-
-.action-box:hover {
-    background: #bbdefb;
-    transform: scale(1.05);
-}
-
-.dashboard-container a {
+.dashboard-section a {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    color: var(--link-color);
     text-decoration: none;
-    color: #007bff;
+    font-weight: 500;
+    padding: 8px 24px;
+    background-color: transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--link-color);
+}
+
+.dashboard-section a:hover {
+    background-color: var(--hover-bg);
+    color: var(--highlight);
+    transform: translateY(-2px);
+}
+
+/* Lists */
+.dashboard-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.dashboard-section ul li {
+    margin-bottom: 8px;
+}
+
+.dashboard-section ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--link-color);
+}
+
+.dashboard-section ul li a:hover {
+    color: var(--highlight);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .actions-container {
-        flex-direction: column;
-        align-items: center;
+    .dashboard-container {
+        padding: 10px;
     }
-}
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
+    .dashboard-container h2 {
+        font-size: 24px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .dashboard-section a {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .theme-toggle {
+        text-align: center;
+        margin: 15px 0;
     }
 }
