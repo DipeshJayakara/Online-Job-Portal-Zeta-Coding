@@ -1,5 +1,7 @@
 <head>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <footer>
@@ -25,15 +27,9 @@
         <div class="footer-section">
             <h3>Follow Us</h3>
             <div class="social-icons">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <img src="<?php echo BASE_URL; ?>assets/images/facebook-icon.png" alt="Facebook">
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                    <img src="<?php echo BASE_URL; ?>assets/images/twitter-icon.png" alt="Twitter">
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <img src="<?php echo BASE_URL; ?>assets/images/linkedin-icon.png" alt="LinkedIn">
-                </a>
+                <a href="https://facebook.com" class="fa fa-facebook"></a>
+                <a href="https://twitter.com" class="fa fa-twitter"></a>
+                <a href="https://linkedin.com" class="fa fa-linkedin"></a>
             </div>
         </div>
     </div>

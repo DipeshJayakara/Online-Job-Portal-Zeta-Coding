@@ -43,7 +43,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     </div>
                 </div>
             <?php else: ?>
-                <a href="<?php echo BASE_URL; ?>views/login.php" class="login-btn">Login</a>
+                <a href="<?php echo BASE_URL; ?>views/login.php" class="login-btn" style="color:white">Login</a>
             <?php endif; ?>
         </div>
 
