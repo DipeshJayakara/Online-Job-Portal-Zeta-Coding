@@ -19,6 +19,114 @@ $user_role = $_SESSION['role'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <link rel="stylesheet" href="../assets/css/dashboard.css?v=<?= time(); ?>">
+    <style>
+        .user-dashboard-wrapper {
+            padding: 30px;
+            background: #f8f9fa;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .dashboard-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .dashboard-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .dashboard-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px 30px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dashboard-card h3 {
+            font-size: 22px;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-card h4 {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        .dashboard-link {
+            display: inline-block;
+            margin: 8px 0;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .dashboard-link:hover {
+            color: #0056b3;
+        }
+
+        .application-list ul,
+        .job-list ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .application-list li,
+        .job-list li {
+            margin-bottom: 6px;
+        }
+
+        .application-list a,
+        .job-list a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .application-list a:hover,
+        .job-list a:hover {
+            color: #007bff;
+        }
+
+        /* Distinct styling by role */
+        .seeker-section {
+            border-left: 5px solid #17a2b8;
+        }
+
+        .provider-section {
+            border-left: 5px solid #28a745;
+        }
+
+        .admin-section {
+            border-left: 5px solid #ffc107;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .dashboard-card {
+                padding: 20px;
+            }
+
+            .dashboard-title {
+                font-size: 22px;
+            }
+        }
+    </style>
 </head>
 <body>
 
