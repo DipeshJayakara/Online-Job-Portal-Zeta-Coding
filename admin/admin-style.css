@@ -119,3 +119,9 @@ body {
     background-color: #1c6692;
 }
 
+.admin-links a{
+    text-decoration: none;
+    font-weight: 400;
+    padding: 14px 20px;
+    text-align: center;
+}
